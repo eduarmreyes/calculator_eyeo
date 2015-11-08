@@ -1,0 +1,52 @@
+/* import font */
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+html {
+	background: #F0F1F2;
+	font-size: 10px;
+	font-family: 'Montserrat', sans-serif;
+}
+input, button {
+	font-family:inherit;
+}
+body > div {
+	margin-left: auto;
+	margin-right: auto;
+	padding: 1rem;
+	width: 500px;
+}
+.result {
+	background: #1E3B44;
+	color: white;
+	font-size: 4rem;
+	word-wrap: break-word;
+}
+.operators {
+	background: #13B4D4;
+}
+.operators > button {
+	background: #0791AC;
+	border: none;
+	display: inline-block;
+	margin-right: 4%;
+	margin-top: 2%;
+	color: white;
+	font-size: 4rem;
+	padding: 0.5rem;
+	width: 20%;
+}
+.operators > button:nth-child(1n+0) {
+	margin-left: 1% !important;
+}
+.operators > button:nth-child(4n+0) {
+	margin-right: 0px !important;
+}
+.number {
+	background: #1E3B44 !important;
+}
+#s_result {
+	background: inherit;
+	border: none;
+	color: inherit;
+	font-size: inherit;
+	width: 100%;
+}
