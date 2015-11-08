@@ -5,11 +5,12 @@
 		// Adding event to buttons
 		var oButtons = document.getElementsByTagName("button");
 		for (var i = 0; i < oButtons.length; i++) {
-			if (oButtons[i].innerText === "=") {
+			if (oButtons[i].innerText === "=" || oButtons[i].textContent === "=") {
 				oButtons[i].addEventListener("click", calculate);
 			} else {
 				oButtons[i].addEventListener("click", function() {
-					switch(this.innerText){
+					var sTest = (typeof this.innerText !== "undefined") ? this.innerText : this.textContent;
+					switch(sTest){
 						case "+/-":
 							document.getElementById("s_result").value = eval(document.getElementById("s_result").value * -1);
 							break;
@@ -20,7 +21,7 @@
 							if (document.getElementById("s_result").value === "0") {
 								document.getElementById("s_result").value = "";
 							}
-							document.getElementById("s_result").value += this.innerText;
+							document.getElementById("s_result").value += (typeof this.innerText !== "undefined") ? this.innerText : this.textContent;
 							break;
 					}
 				});
