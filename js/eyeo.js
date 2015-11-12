@@ -1,18 +1,13 @@
 (function(){
-	var oCalculate = function() {
-		var fn = Array.prototype.apply(arguments);
-		return fn.apply(null, arguments);
-	};
-	var oSum = function() {
-		var total = 0;
-		for (var i = 0, l = arguments.length; i < l; i++) {
-			total += arguments[i];
-		}
-		return total;
-	};
 	document.addEventListener("DOMContentLoaded", function() {
 		var sResult = document.getElementById("s_result");
 		sResult.value = 0;
+		// Adding event to keypress enter
+		document.addEventListener("keypress", function(e) {
+			if (e.keyCode === 13) {
+				fnCalculate();
+			}
+		});
 		// Adding event to buttons
 		var oButtons = document.getElementsByTagName("button");
 		for (var i = 0; i < oButtons.length; i++) {
@@ -21,6 +16,7 @@
 			} else {
 				oButtons[i].addEventListener("click", function() {
 					var sTest = (typeof this.innerText !== "undefined") ? this.innerText : this.textContent;
+					debugger;
 					switch(sTest){
 						case "+/-":
 							sResult.value = eval(sResult.value * -1);
@@ -29,10 +25,11 @@
 							sResult.value = "";
 							break;
 						default:
+							debugger;
 							if (sResult.value === "0") {
 								sResult.value = "";
 							}
-							sResult.value += (typeof this.innerText !== "undefined") ? this.innerText : this.textContent;
+							sResult.value += sTest;
 							break;
 					}
 				});

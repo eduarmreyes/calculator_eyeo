@@ -44,7 +44,7 @@ body > div {
 	background: #1E3B44 !important;
 }
 #s_result {
-	background: inherit;
+	background: #1E3B44; /* explicit background for internet explorer users */
 	border: none;
 	color: inherit;
 	font-size: inherit;
