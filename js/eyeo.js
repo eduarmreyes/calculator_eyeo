@@ -1,4 +1,15 @@
 (function(){
+	var oCalculate = function() {
+		var fn = Array.prototype.apply(arguments);
+		return fn.apply(null, arguments);
+	};
+	var oSum = function() {
+		var total = 0;
+		for (var i = 0, l = arguments.length; i < l; i++) {
+			total += arguments[i];
+		}
+		return total;
+	};
 	document.addEventListener("DOMContentLoaded", function() {
 		var sResult = document.getElementById("s_result");
 		sResult.value = 0;
@@ -6,38 +17,38 @@
 		var oButtons = document.getElementsByTagName("button");
 		for (var i = 0; i < oButtons.length; i++) {
 			if (oButtons[i].innerText === "=" || oButtons[i].textContent === "=") {
-				oButtons[i].addEventListener("click", calculate);
+				oButtons[i].addEventListener("click", fnCalculate);
 			} else {
 				oButtons[i].addEventListener("click", function() {
 					var sTest = (typeof this.innerText !== "undefined") ? this.innerText : this.textContent;
 					switch(sTest){
 						case "+/-":
-							document.getElementById("s_result").value = eval(document.getElementById("s_result").value * -1);
+							sResult.value = eval(sResult.value * -1);
 							break;
 						case "C":
-							document.getElementById("s_result").value = "";
+							sResult.value = "";
 							break;
 						default:
-							if (document.getElementById("s_result").value === "0") {
-								document.getElementById("s_result").value = "";
+							if (sResult.value === "0") {
+								sResult.value = "";
 							}
-							document.getElementById("s_result").value += (typeof this.innerText !== "undefined") ? this.innerText : this.textContent;
+							sResult.value += (typeof this.innerText !== "undefined") ? this.innerText : this.textContent;
 							break;
 					}
 				});
 			}
 		}
 	});
-	function calculate () {
-		var sCalculate = document.getElementById("s_result").value;
-		var aExponent = sCalculate.split("E");
+	var fnCalculate = function () {
+		var sCalculate = document.getElementById("s_result");
+		var aExponent = sCalculate.value.split("E");
 		if (aExponent.length > 1) {
-			sCalculate = Math.pow(eval(aExponent[0]), eval(aExponent[1]));
+			sCalculate.value = Math.pow(eval(aExponent[0]), eval(aExponent[1]));
 		}
-		sResult = eval(sCalculate);
+		sResult = eval(sCalculate.value);
 		if (isNaN(sResult)) {
 			sResult = "Syntax error";
 		}
-		document.getElementById("s_result").value = sResult;
+		sCalculate.value = sResult;
 	}
 })();
